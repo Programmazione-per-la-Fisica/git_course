@@ -17,11 +17,27 @@
 \end{frame}
 
 \begin{frame}[fragile]{Why remote?}
+    Working on a remote repository allows to:
+    \begin{itemize}[<+->]
+        \item Maintain an online backup of your work and the entire history of changes.
+        \item Collaborate with multiple users on the same files.
+        \item Share your work with a community or publicly.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Github}
     empty
 \end{frame}
 
 \begin{frame}[fragile]{git remote add origin}
-    empty
+    \begin{itemize}
+        \item \code{git remote add origin <url_online_repository>} will link your local repository with a remote repo.
+        \item \code{git push -u origin master} will syncronize the repositories by \alert{pushing} the local changes, and set the default remote stream.
+    \end{itemize}
+    \begin{block}{}
+        You will be promted to enter the username and password of your remote repository.
+        If using 2FA on github, instead of the password you should enter a \href{https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token}{Personal Access Token}.
+    \end{block}
 \end{frame}
 
 \begin{frame}[fragile]{git push}
