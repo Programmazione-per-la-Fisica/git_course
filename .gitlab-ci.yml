@@ -1,0 +1,13 @@
+pdf:
+  stage: deploy
+  image: aergus/latex
+  tags:
+    - git_course
+  script:
+    - pdflatex -halt-on-error git_course && pdflatex git_course && mv git_course.pdf ..
+  artifacts:
+    paths:
+      - git_course.pdf
+  only:
+    refs:
+      - master
