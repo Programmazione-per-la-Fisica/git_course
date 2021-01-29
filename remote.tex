@@ -1,0 +1,41 @@
+\begin{frame}[fragile]{Remote Workflow}
+	\begin{tikzpicture}
+        [area/.style={rectangle, draw, minimum height= 4em,minimum width= 7em,rounded corners=0.4em,align=center},
+        hidden/.style={rectangle, minimum height= 4em,minimum width= 7em,rounded corners=0.4em,align=center}]
+				
+		\node[area] (working) {Working\\Directory};
+		\node[area] (staging) [right=of working] {Staging\\Area};
+		\node[area] (local) [right=of staging] {Local\\Repository};
+        \node[area] (remote) [above=of local] {Remote\\Repository};
+%        \draw[->] (working.south) -- ++(0,-1) --  node[midway, below]{git add} ++ (3.5,0) -| (staging.south) ;
+%        \draw[->] (staging.north) -- ++(0,+1) --  node[midway, above]{git commit -m} ++ (3.5,0) -| (local.north) ;
+
+		\begin{scope}[on background layer]
+			\node [draw=gray, dashed,fit=(working) (staging) (local), minimum height = 8em, label=above left:{Dev Environment}] {};
+		\end{scope}            
+	\end{tikzpicture}
+\end{frame}
+
+\begin{frame}[fragile]{Why remote?}
+    empty
+\end{frame}
+
+\begin{frame}[fragile]{git remote add origin}
+    empty
+\end{frame}
+
+\begin{frame}[fragile]{git push}
+    empty
+\end{frame}
+
+\begin{frame}[fragile]{git pull}
+    empty
+\end{frame}
+
+\begin{frame}[fragile]{git clone}
+    empty
+\end{frame}
+
+\begin{frame}[fragile]{git fetch}
+    empty
+\end{frame}
