@@ -1,7 +1,0 @@
-\frametitle{git diff}
-\begin{itemize}
-        \item \code{git diff} is used to show the changes in the files.
-        \item When no argument is passed, it shows the difference between the current state of the repository and the working directory.
-        \item When \code{--staged} is passed as argument, it shows the difference between the current state of the repository and the staged changes.
-        \item When a commit number is passed as argument, it shows the difference between the current state of the repository and the selected commit.
-    \end{itemize}
