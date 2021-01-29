@@ -4,7 +4,7 @@ pdf:
   tags:
     - git_course
   script:
-    - pdflatex -halt-on-error git_course && pdflatex git_course && mv git_course.pdf ..
+    - pdflatex -halt-on-error git_course && pdflatex git_course
   artifacts:
     paths:
       - git_course.pdf
