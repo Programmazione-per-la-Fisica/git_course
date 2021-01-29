@@ -1,0 +1,198 @@
+\begin{frame}[fragile]{What is Git}
+			
+	Git is a tool that protects yourself and others from yourself and others.
+		
+	\uncover <2->{Git can:}
+	\begin{itemize}
+		\item <2-> Keep record of all the (tracked) files in your directory.
+		\item <3-> Maintain an history of all the changes.
+		\item <4-> Revert changes to fix mistakes.
+		\item <5-> Allow for concurrent work, helping prevent conflicts.
+	\end{itemize}
+		
+	\uncover <6->{Also known as \alert{Version Control}}
+			
+\end{frame}
+
+\begin{frame}[fragile]{git init}
+	\begin{itemize}[<+->]
+		\item  \code{git init} initializes the working directory.
+		      		      
+		\item It tells git to start managing a \alert{repository} for your workspace.
+		      		       
+		\item The repository (or 'repo' for short) is a folder in a working directory in which Git tracks all changes made to files and builds a history of those changes.
+		      		       
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{git status}
+    \code{git status} describes the current state of the repository.
+
+	\begin{codeblock}<1->{
+\uncover<1->{~/workspace\$ git init\inserthitenter}\uncover<2->{
+Initialized empty Git repository in ~/workspace/.git/
+~/workspace\$}\uncover<3->{ git status\inserthitenter}\uncover<4->{
+On branch master
+
+No commits yet
+
+nothing to commit (create/copy files and use "git add" to track)
+~/workspace\$}\uncover<5->{ rm -r .git\inserthitenter
+~/workspace\$}\uncover<6->{ git status\inserthitenter
+}\uncover<7->{fatal: not a git repository (or any of the parent directories): .git
+    }}\end{codeblock}
+		      		       
+\end{frame}
+
+\begin{frame}[fragile]{Local Workflow}
+	\begin{tikzpicture}
+        [area/.style={rectangle, draw, minimum height= 4em,minimum width= 7em,rounded corners=0.4em,align=center},
+        hidden/.style={rectangle, minimum height= 4em,minimum width= 7em,rounded corners=0.4em,align=center}]
+				
+		\node[area] (working) {Working\\Directory};
+		\node[hidden] (staging) [right=of working] {};%{Staging\\Area};
+		\node[area] (local) [right=of staging] {Local\\Repository};
+				
+		\begin{scope}[on background layer]
+			\node [draw=gray, dashed,fit=(working) (staging) (local), minimum height = 8em, label=above left:{Dev Environment}] {};
+		\end{scope}            
+	\end{tikzpicture}
+\end{frame}
+
+\begin{frame}[fragile]{Untracked files}
+	Files in the working directory are not automatically added to the repository.
+	\begin{codeblock}<1->{
+\uncover<1->{~/workspace\$ touch main.cpp && ls\inserthitenter}\uncover<2->{
+main.cpp
+~/workspace\$}\uncover<3->{ git status\inserthitenter}\uncover<4->{
+On branch master
+
+No commits yet
+
+Untracked files:
+    (use "git add <file>..." to include in what will be committed)
+        main.cpp
+
+nothing added to commit but untracked files present (use "git add" to 
+track)}}\end{codeblock}
+		      		       
+\end{frame}
+
+\begin{frame}[fragile]{Local Workflow}
+	\begin{tikzpicture}
+        [area/.style={rectangle, draw, minimum height= 4em,minimum width= 7em,rounded corners=0.4em,align=center},
+        hidden/.style={rectangle, minimum height= 4em,minimum width= 7em,rounded corners=0.4em,align=center}]
+				
+		\node[area, label={[font=\fontsize{0.7em}{0.7em}\selectfont, align=left]below: -tracked files\\-untracked files}] (working) {Working\\Directory};
+		\node[area, label={[font=\fontsize{0.7em}{0.7em}\selectfont, align=left]below: -tracked files}] (staging) [right=of working] {Staging\\Area};
+		\node[area] (local) [right=of staging] {Local\\Repository};
+				
+		\begin{scope}[on background layer]
+			\node [draw=gray, dashed,fit=(working) (staging) (local), minimum height = 8em, label=above left:{Dev Environment}] {};
+		\end{scope}            
+	\end{tikzpicture}
+\end{frame}
+
+\begin{frame}[fragile]{git add}
+    \begin{itemize} 
+        \item \code{git add <filename>} asks Git to track changes to a file in the repository. 
+    \end{itemize}
+    \begin{codeblock}<1->{
+\uncover<1->{~/workspace\$ git add main.cpp\inserthitenter}\uncover<2->{
+~/workspace\$ git status\inserthitenter}\uncover<3->{
+On branch master
+
+No commits yet
+
+Changes to be committed:
+    (use "git rm --cached <file>..." to unstage)
+        new file:   main.cpp}}\end{codeblock}    		       
+\end{frame}
+
+\begin{frame}[fragile]{git add \insertcontinuationtext}
+    \begin{itemize} 
+        \item You can add multiple files to the staging area with \\\code{git add <file1> <file2> <\dots>}
+        \item There is \alert{never} a good reason to use \code{git add *}, \code{git add .}, \code{git add -A} or \code{git add -u}
+    \end{itemize}      		       
+\end{frame}
+
+\begin{frame}[fragile]{Local Workflow}
+	\begin{tikzpicture}
+        [area/.style={rectangle, draw, minimum height= 4em,minimum width= 7em,rounded corners=0.4em,align=center},
+        hidden/.style={rectangle, minimum height= 4em,minimum width= 7em,rounded corners=0.4em,align=center}]
+				
+		\node[area] (working) {Working\\Directory};
+		\node[area] (staging) [right=of working] {Staging\\Area};
+		\node[area] (local) [right=of staging] {Local\\Repository};
+        
+        \draw[->] (working.south) -- ++(0,-1) --  node[midway, below]{git add} ++ (3.5,0) -| (staging.south) ;
+        %\draw[->] (staging.north) -- ++(0,+1) --  node[midway, above]{git commit} ++ (3.5,0) -| (local.north) ;
+
+		\begin{scope}[on background layer]
+			\node [draw=gray, dashed,fit=(working) (staging) (local), minimum height = 8em, label=above left:{Dev Environment}] {};
+		\end{scope}            
+	\end{tikzpicture}
+\end{frame}
+
+\begin{frame}[fragile]{git commit -m}
+    \begin{itemize} 
+        \item Files in the staging area are tracked by Git, but their changes have not been saved on the repository.
+        \item With \code{git commit} a collection of changes in the staging area is checked to the local repository and saved to the repo history.
+        \item Each commit should be labelled with a message that clearly describes the changes made.
+        \item The commit message can be spficied between quotation marks:\\\code{   git commit -m "Commit message"}
+    \end{itemize}      		       
+\end{frame}
+
+\begin{frame}[fragile]{git commit -m \insertcontinuationtext}
+    \begin{itemize} 
+        \item \code{git commit -m "Commit message"} asks Git to save changes in the local repository's history. 
+    \end{itemize}
+    \begin{codeblock}<1->{
+\uncover<1->{~/workspace\$ git commit -m "Initial commit"\inserthitenter }\uncover<2->{
+[master (root-commit) 0367896] Initial commit
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 main.cpp
+/workspace\$ git status\inserthitenter}\uncover<3->{
+On branch master
+nothing to commit, working tree clean}}\end{codeblock}    		       
+\end{frame}
+
+\begin{frame}[fragile]{Local Workflow}
+	\begin{tikzpicture}
+        [area/.style={rectangle, draw, minimum height= 4em,minimum width= 7em,rounded corners=0.4em,align=center},
+        hidden/.style={rectangle, minimum height= 4em,minimum width= 7em,rounded corners=0.4em,align=center}]
+				
+		\node[area] (working) {Working\\Directory};
+		\node[area] (staging) [right=of working] {Staging\\Area};
+		\node[area] (local) [right=of staging] {Local\\Repository};
+        
+        \draw[->] (working.south) -- ++(0,-1) --  node[midway, below]{git add} ++ (3.5,0) -| (staging.south) ;
+        \draw[->] (staging.north) -- ++(0,+1) --  node[midway, above]{git commit -m} ++ (3.5,0) -| (local.north) ;
+
+		\begin{scope}[on background layer]
+			\node [draw=gray, dashed,fit=(working) (staging) (local), minimum height = 8em, label=above left:{Dev Environment}] {};
+		\end{scope}            
+	\end{tikzpicture}
+\end{frame}
+
+\begin{frame}[fragile]{git log}
+    \begin{itemize} 
+        \item \code{git log} show the local repository's history. 
+    \end{itemize}
+    \begin{codeblock}<1->{
+\uncover<1->{/workspace\$ git log\inserthitenter
+commit 03678964f710e1ef1e9d6c0704e3f02f014109a0 (HEAD -> master)
+Author: Simone Rossi Tisbeni <simone.rossitisbeni@unibo.it>
+Date:   Fri Jan 29 14:39:12 2021 +0000
+
+    Initial commit}}\end{codeblock}    		       
+\end{frame}
+
+\begin{frame}[fragile]{git diff}
+    \begin{itemize} 
+        \item \code{git diff} is used to show the changes in the files.
+        \item When no argument is passed, it shows the difference between the current state of the repository and the working directory.
+        \item When \code{--staged} is passed as argument, it shows the difference between the current state of the repository and the staged changes.
+        \item When a commit number is passed as argument, it shows the difference between the current state of the repository and the selected commit.
+    \end{itemize}      		       
+\end{frame}
