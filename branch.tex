@@ -1,5 +1,50 @@
 \begin{frame}[fragile]{Branching}
-    empty
+\begin{itemize}[<+->]
+	\item   A git repositry keeps track of the history of changes.
+    \item   It can also keep track of multiple lines of development.
+    \item   These are known as \alert{branches}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{History Graph}
+    \uncover<1>{
+        \begin{tikzpicture}[remember picture,overlay,
+            nodo/.style={circle, draw, fill},
+            linea/.style={line width=0.3em},
+            nome/.style={rotate=45}]
+            \node[nodo] (comm2) at (current page.center) {};
+            \node[nodo] (comm1) [left=of comm2] {};
+            \node[nodo] (init) [left=of comm1]{};
+            \node[nodo] (comm3) [right=of comm2] {};
+            \node[nodo] (head) [right=of comm3] {};
+            \draw[linea] (init) -- (comm1);
+            \draw[linea] (comm1) -- (comm2);
+            \draw[linea] (comm2) -- (comm3);
+            \draw[linea] (comm3) -- (head);
+            \node[nome] at (init.south west) [anchor=east] {Initial commit};
+            \node[nome] at (comm1.south west) [anchor=east] {Commit \#2};
+            \node[minimum height=2em] at (comm2.south east) [anchor=north] {\dots};
+            \node[nome] at (head.south west) [anchor=east] {HEAD};
+        \end{tikzpicture}
+    }
+    \uncover<2>{
+        \begin{tikzpicture}[remember picture,overlay,
+            nodo/.style={circle, draw, fill, brickred},
+            linea/.style={line width=0.3em, brickred},
+            nome/.style={draw}]
+            \node[nodo] (comm2) at (current page.center) {};
+            \node[nodo] (comm1) [left=of comm2] {};
+            \node[nodo] (init) [left=of comm1]{};
+            \node[nodo] (comm3) [right=of comm2] {};
+            \node[nodo] (head) [right=of comm3] {};
+            \draw[linea] (init) -- (comm1);
+            \draw[linea] (comm1) -- (comm2);
+            \draw[linea] (comm2) -- (comm3);
+            \draw[linea] (comm3) -- (head);
+            \node[nome, red] (master) [above=of head] {master};
+            \draw[->, shorten >=5pt] (master) -- (head);
+        \end{tikzpicture}
+    }
 \end{frame}
 
 \begin{frame}[fragile]{git branch}
@@ -10,12 +55,101 @@
     empty
 \end{frame}
 
+\begin{frame}[fragile]{History Graph}
+    \uncover<1>{
+        \begin{tikzpicture}[remember picture,overlay,
+            nodo/.style={circle, draw, fill, brickred},
+            linea/.style={line width=0.3em, brickred},
+            nome/.style={draw}]
+            \node[nodo] (comm2) at (current page.center) {};
+            \node[nodo] (comm1) [left=of comm2] {};
+            \node[nodo] (init) [left=of comm1]{};
+            \node[nodo] (comm3) [right=of comm2] {};
+            \node[nodo] (head) [right=of comm3] {};
+            \draw[linea] (init) -- (comm1);
+            \draw[linea] (comm1) -- (comm2);
+            \draw[linea] (comm2) -- (comm3);
+            \draw[linea] (comm3) -- (head);
+            \node[nome, brickred] (master) [above=of head] {master};
+            \draw[->, shorten >=5pt] (master) -- (head);
+            \node[nome, darkspringgreen] (branch) [below=of head] {new_branch};
+            \draw[->, shorten >=5pt] (branch) -- (head);
+        \end{tikzpicture}
+    }
+\end{frame}
+
 \begin{frame}[fragile]{git checkout }
     empty
 \end{frame}
 
-\begin{frame}[fragile]{master branch}
-    empty
+\begin{frame}[fragile]{History Graph}
+    \uncover<1>{
+        \begin{tikzpicture}[remember picture,overlay,
+            nodo/.style={circle, draw, fill, brickred},
+            linea/.style={line width=0.3em, brickred},
+            nome/.style={draw}]
+            \node[nodo] (comm3) at (current page.center) {};
+            \node[nodo] (comm2) [left=of comm3] {};
+            \node[nodo] (comm1) [left=of comm2] {};
+            \node[nodo] (init) [left=of comm1]{};
+            \node[nodo] (head) [right=of comm3] {};
+            \draw[linea] (init) -- (comm1);
+            \draw[linea] (comm1) -- (comm2);
+            \draw[linea] (comm2) -- (comm3);
+            \draw[linea] (comm3) -- (head);
+            \node[nome, brickred] (master) [above=of head] {master};
+            \draw[->, shorten >=5pt] (master) -- (head);
+            \node[nome, darkspringgreen] (branch) [below=of head] {new_branch};
+            \draw[->, shorten >=5pt] (branch) -- (head);
+        \end{tikzpicture}
+    }
+    \uncover<2>{
+        \begin{tikzpicture}[remember picture,overlay,
+            nodo/.style={circle, draw, fill, brickred},
+            linea/.style={line width=0.3em, brickred},
+            nome/.style={draw}]
+            \node[nodo] (comm3) at (current page.center) {};
+            \node[nodo] (comm2) [left=of comm3] {};
+            \node[nodo] (comm1) [left=of comm2] {};
+            \node[nodo] (init) [left=of comm1]{};
+            \node[nodo] (head) [right=of comm3] {};
+            \draw[linea] (init) -- (comm1);
+            \draw[linea] (comm1) -- (comm2);
+            \draw[linea] (comm2) -- (comm3);
+            \draw[linea] (comm3) -- (head);
+            \node[nodo] (newcom) [right=of head] {};
+            \draw[linea] (head) -- (newcom);
+            \node[nome, brickred] (master) [above=of newcom] {master};
+            \draw[->, shorten >=5pt] (master) -- (newcom);
+            \node[nome, darkspringgreen] (branch) [below=of head] {new_branch};
+            \draw[->, shorten >=5pt] (branch) -- (head);
+        \end{tikzpicture}
+    }
+    \uncover<3>{
+        \begin{tikzpicture}[remember picture,overlay,
+            nodo/.style={circle, draw, fill, brickred},
+            linea/.style={line width=0.3em, brickred},
+            nome/.style={draw}]
+            \node[nodo] (comm3) at (current page.center) {};
+            \node[nodo] (comm2) [left=of comm3] {};
+            \node[nodo] (comm1) [left=of comm2] {};
+            \node[nodo] (init) [left=of comm1]{};
+            \node[nodo] (head) [right=of comm3] {};
+            \draw[linea] (init) -- (comm1);
+            \draw[linea] (comm1) -- (comm2);
+            \draw[linea] (comm2) -- (comm3);
+            \draw[linea] (comm3) -- (head);
+            \node[nodo] (newcom) [right=of head] {};
+            \node (none) [below=of newcom] {};
+            \node[nodo, darkspringgreen, yshift=10] (commb) [right=of none] {};
+            \draw[linea] (head) -- (newcom);
+            \draw[linea, darkspringgreen] (head.east) to[out=0,in=180] (commb.west);
+            \node[nome, brickred] (master) [above=of newcom] {master};
+            \draw[->, shorten >=5pt] (master) -- (newcom);
+            \node[nome, darkspringgreen] (branch) [below=of commb] {new_branch};
+            \draw[->, shorten >=5pt] (branch) -- (commb);
+        \end{tikzpicture}
+    }
 \end{frame}
 
 \begin{frame}[fragile]{Merge}
@@ -23,6 +157,10 @@
 \end{frame}
 
 \begin{frame}[fragile]{Merge conflicts}
+    empty
+\end{frame}
+
+\begin{frame}[fragile]{Tagging}
     empty
 \end{frame}
 
