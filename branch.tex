@@ -6,6 +6,20 @@
 \end{itemize}
 \end{frame}
 
+\begin{frame}[fragile]{git branch}
+    \begin{itemize}[<+->]
+        \item \code{git branch} is the command used to manipulate different development lines.
+        \item When launched with no arguments, lists the branches available in the repository
+    \end{itemize}
+    \begin{shellblock}<3->
+~/workspace\$ git branch\inserthitenter
+{\color{white}*} master
+\end{shellblock}
+    \begin{itemize}[<4->]
+        \item The current branch is highlighted in green and prefixed with \code{*} (asterisk)
+    \end{itemize}
+\end{frame}
+
 \begin{frame}[fragile]{History Graph}
     \uncover<1>{
         \begin{tikzpicture}[remember picture,overlay,
@@ -47,12 +61,33 @@
     }
 \end{frame}
 
-\begin{frame}[fragile]{git branch}
-    empty
+\begin{frame}[fragile]{Main branch}
+    \begin{itemize}[<+->]
+        \item The default branch created at the initialization of the repository is usually named \alert{master}.
+        \item The deafult is slowly moving towards a more inclusive denomination.
+        \item Github already started using (Oct 2020) the name \alert{main}.
+    \end{itemize}
+    \begin{shellblock}<4->
+~/workspace\$ git branch -m master main\inserthitenter
+~/workspace\$ git branch\inserthitenter
+{\color{white}*} main
+\end{shellblock}
 \end{frame}
 
 \begin{frame}[fragile]{git branch \insertcontinuationtext}
-    empty
+    \begin{itemize}
+        \item You can create a new branch using \code{git branch <branch_name>}
+    \end{itemize}
+    \begin{shellblock}<2->
+~/workspace\$ git branch new_branch\inserthitenter
+~/workspace\$ git branch\inserthitenter
+{\color{white}*} main
+{\color{white}  new_branch}    
+    \end{shellblock}
+
+    \begin{itemize}[<3->]
+        \item \code{git log} shows the position of the branches on the commit history
+    \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]{History Graph}
@@ -70,8 +105,8 @@
             \draw[linea] (comm1) -- (comm2);
             \draw[linea] (comm2) -- (comm3);
             \draw[linea] (comm3) -- (head);
-            \node[nome, brickred] (master) [above=of head] {master};
-            \draw[->, shorten >=5pt] (master) -- (head);
+            \node[nome, brickred] (main) [above=of head] {main};
+            \draw[->, shorten >=5pt] (main) -- (head);
             \node[nome, darkspringgreen] (branch) [below=of head] {new_branch};
             \draw[->, shorten >=5pt] (branch) -- (head);
         \end{tikzpicture}
@@ -79,10 +114,12 @@
 \end{frame}
 
 \begin{frame}[fragile]{git checkout }
-    empty
+    \begin{itemize}
+        \item The commit histories are independent on different branches
+    \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{History Graph}
+\begin{frame}[fragile]{git checkout}
     \uncover<1>{
         \begin{tikzpicture}[remember picture,overlay,
             nodo/.style={circle, draw, fill, brickred},
@@ -97,8 +134,8 @@
             \draw[linea] (comm1) -- (comm2);
             \draw[linea] (comm2) -- (comm3);
             \draw[linea] (comm3) -- (head);
-            \node[nome, brickred] (master) [above=of head] {master};
-            \draw[->, shorten >=5pt] (master) -- (head);
+            \node[nome, brickred] (main) [above=of head] {main};
+            \draw[->, shorten >=5pt] (main) -- (head);
             \node[nome, darkspringgreen] (branch) [below=of head] {new_branch};
             \draw[->, shorten >=5pt] (branch) -- (head);
         \end{tikzpicture}
@@ -119,13 +156,46 @@
             \draw[linea] (comm3) -- (head);
             \node[nodo] (newcom) [right=of head] {};
             \draw[linea] (head) -- (newcom);
-            \node[nome, brickred] (master) [above=of newcom] {master};
-            \draw[->, shorten >=5pt] (master) -- (newcom);
+            \node[nome, brickred] (main) [above=of newcom] {main};
+            \draw[->, shorten >=5pt] (main) -- (newcom);
             \node[nome, darkspringgreen] (branch) [below=of head] {new_branch};
             \draw[->, shorten >=5pt] (branch) -- (head);
         \end{tikzpicture}
     }
-    \uncover<3>{
+\end{frame}
+
+\begin{frame}[fragile]{git checkout }
+    \begin{itemize}
+        \item The commit histories are independent on different branches
+        \item Any new commit will be available only on the active branch.
+        \item <2-> To switch branch, you use \code{git checkout <branch_name>}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{git checkout}
+    \uncover<1>{
+        \begin{tikzpicture}[remember picture,overlay,
+            nodo/.style={circle, draw, fill, brickred},
+            linea/.style={line width=0.3em, brickred},
+            nome/.style={draw}]
+            \node[nodo] (comm3) at (current page.center) {};
+            \node[nodo] (comm2) [left=of comm3] {};
+            \node[nodo] (comm1) [left=of comm2] {};
+            \node[nodo] (init) [left=of comm1]{};
+            \node[nodo] (head) [right=of comm3] {};
+            \draw[linea] (init) -- (comm1);
+            \draw[linea] (comm1) -- (comm2);
+            \draw[linea] (comm2) -- (comm3);
+            \draw[linea] (comm3) -- (head);
+            \node[nodo] (newcom) [right=of head] {};
+            \draw[linea] (head) -- (newcom);
+            \node[nome, brickred] (main) [above=of newcom] {main};
+            \draw[->, shorten >=5pt] (main) -- (newcom);
+            \node[nome, darkspringgreen] (branch) [below=of head] {new_branch};
+            \draw[->, shorten >=5pt] (branch) -- (head);
+        \end{tikzpicture}
+    }
+    \uncover<2>{
         \begin{tikzpicture}[remember picture,overlay,
             nodo/.style={circle, draw, fill, brickred},
             linea/.style={line width=0.3em, brickred},
@@ -144,8 +214,8 @@
             \node[nodo, darkspringgreen, yshift=10] (commb) [right=of none] {};
             \draw[linea] (head) -- (newcom);
             \draw[linea, darkspringgreen] (head.east) to[out=0,in=180] (commb.west);
-            \node[nome, brickred] (master) [above=of newcom] {master};
-            \draw[->, shorten >=5pt] (master) -- (newcom);
+            \node[nome, brickred] (main) [above=of newcom] {main};
+            \draw[->, shorten >=5pt] (main) -- (newcom);
             \node[nome, darkspringgreen] (branch) [below=of commb] {new_branch};
             \draw[->, shorten >=5pt] (branch) -- (commb);
         \end{tikzpicture}
@@ -160,12 +230,57 @@
     empty
 \end{frame}
 
-\begin{frame}[fragile]{Tagging}
-    empty
-\end{frame}
-
-\begin{frame}[fragile]{additional commands}
-    empty
+\begin{frame}[fragile]{git checkout}
+    \uncover<1>{
+        \begin{tikzpicture}[remember picture,overlay,
+            nodo/.style={circle, draw, fill, brickred},
+            linea/.style={line width=0.3em, brickred},
+            nome/.style={draw}]
+            \node[nodo] (head) at (current page.center) {};
+            \node[nodo] (comm2) [left=of head] {};
+            \node[nodo] (comm1) [left=of comm2] {};
+            \node[nodo] (init) [left=of comm1]{};
+            \draw[linea] (init) -- (comm1);
+            \draw[linea] (comm1) -- (comm2);
+            \draw[linea] (comm2) -- (head);
+            \node[nodo] (newcom) [right=of head] {};
+            \node (none) [below=of newcom] {};
+            \node[nodo, darkspringgreen, yshift=10] (commb) [right=of none] {};
+            \draw[linea] (head) -- (newcom);
+            \draw[linea, darkspringgreen] (head.east) to[out=0,in=180] (commb.west);
+            \node[nome, brickred] (main) [above=of newcom] {main};
+            \draw[->, shorten >=5pt] (main) -- (newcom);
+            \node[nome, darkspringgreen] (branch) [below=of commb] {new_branch};
+            \draw[->, shorten >=5pt] (branch) -- (commb);
+        \end{tikzpicture}
+    }
+    \uncover<2>{
+        \begin{tikzpicture}[remember picture,overlay,
+            nodo/.style={circle, draw, fill, brickred},
+            linea/.style={line width=0.3em, brickred},
+            nome/.style={draw}]
+            \node[nodo] (head) at (current page.center) {};
+            \node[nodo] (comm2) [left=of head] {};
+            \node[nodo] (comm1) [left=of comm2] {};
+            \node[nodo] (init) [left=of comm1]{};
+            \draw[linea] (init) -- (comm1);
+            \draw[linea] (comm1) -- (comm2);
+            \draw[linea] (comm2) -- (head);
+            \node[nodo] (newcom) [right=of head] {};
+            \node (none) [below=of newcom] {};
+            \node[nodo, darkspringgreen, yshift=10] (commb) [right=of none] {};
+            \draw[linea] (head) -- (newcom);
+            \draw[linea, darkspringgreen] (head.east) to[out=0,in=180] (commb.west);
+            \node[circle, draw=none] (hidden) [right=of newcom] {};
+            \node[nodo] (merge) [right=of hidden] {};
+            \node[nome, brickred] (main) [above=of merge] {main};
+            \draw[linea] (newcom) -- (merge);
+            \draw[linea, darkspringgreen] (commb.east) to[out=0,in=180] (merge.west);
+            \draw[->, shorten >=5pt] (main) -- (merge);
+            \node[nome, darkspringgreen] (branch) [below=of merge] {new_branch};
+            \draw[->, shorten >=5pt] (branch) -- (merge);
+        \end{tikzpicture}
+    }
 \end{frame}
 
 \begin{frame}[fragile]{references}
