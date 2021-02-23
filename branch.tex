@@ -64,6 +64,7 @@
 \begin{frame}[fragile]{Main branch}
     \begin{itemize}[<+->]
         \item The default branch created at the initialization of the repository is usually named \alert{master}.
+        \item The default branch should host the latest stable version of the repository.
         \item The deafult is slowly moving towards a more inclusive denomination.
         \item Github already started using (Oct 2020) the name \alert{main}.
     \end{itemize}
@@ -76,7 +77,9 @@
 
 \begin{frame}[fragile]{git branch \insertcontinuationtext}
     \begin{itemize}
-        \item You can create a new branch using \code{git branch <branch_name>}
+        \item   Additional branches are used to host feature development, hotfix and beta releases.    
+        \item   They are ment to have a very brief life.
+        \item   You can create a new branches using \code{git branch <branch_name>}
     \end{itemize}
     \begin{shellblock}<2->
 ~/workspace\$ git branch new_branch\inserthitenter
@@ -223,14 +226,79 @@
 \end{frame}
 
 \begin{frame}[fragile]{Merge}
-    empty
+\begin{itemize}[<+->]
+    \item Merging is Git's way of putting a forked history back together.
+    \item It is often used to merge a feature developed in a secondary branch to the main branch.
+    \item Git can automatically merge commits unless there are changes that conflict in both commit sequences.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Merge \insertcontinuationtext}
+    \begin{itemize}[<+->]
+        \item To merge two branches togheter, first checkout to the destination branch
+        \item Then use \code{git merge <branch_name>}
+    \end{itemize}
+    \uncover<3->{\begin{shellblock}
+~/workspace\$ git checkout main \inserthitenter
+
+~/workspace\$ git merge new_branch \uncover<4->{\inserthitenter}
+\uncover<4>{
+
+~/workspace\$}
+\uncover<5->{
+Auto-merging main.cpp
+
+CONFLICT (content): Merge conflict in main.cpp
+
+Automatic merge failed; fix conflicts and then commit the result.
+    }\end{shellblock}}
 \end{frame}
 
 \begin{frame}[fragile]{Merge conflicts}
-    empty
+    \begin{itemize}[<+->]
+        \item If the merging branches both changed the same file, Git won't be able to figure out which version to use.
+        \item Running the \code{git status} shows you which files need to be resolved.
+    \end{itemize}
+    \begin{shellblock}<3->
+~/workspace\$ git status \inserthitenter
+On branch main
+You have unmerged paths.
+  (fix conflicts and run "git commit")
+  (use "git merge --abort" to abort the merge)
+
+Unmerged paths:
+  (use "git add <file>..." to mark resolution)
+        both modified:   main.cpp
+
+no changes added to commit (use "git add" and/or "git commit -a")    
+    \end{shellblock}
 \end{frame}
 
-\begin{frame}[fragile]{git checkout}
+\begin{frame}[fragile]{Merge conflicts \insertcontinuationtext}
+    \begin{itemize}[<+->]
+        \item Git will edit the content of the affected files with visual indicators.
+        \item These mark the conflicting section in the recieving branch and the upcoming changes. 
+    \end{itemize}
+    \begin{codeblock}<3->
+    This content is not affected by the conflict
+    <<<<<<< main
+    this is conflicting text from main
+    =======
+    this is conflicting text from the new branch
+    >>>>>>> new_branch;
+    \end{codeblock}
+\end{frame}
+
+\begin{frame}[fragile]{Merge conflicts \insertcontinuationtext}
+    \begin{itemize}[<+->]
+        \item To fix the conflict, simply edit the files with the changes to maintain.
+        \item Git doesn't care for the content of the files, he simply requires you to remove the markers.
+        \item Run \code{git add} on the files to tell Git they are resolved.
+        \item Finally commit the changes with \code{git commit}.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{History Graph}
     \uncover<1>{
         \begin{tikzpicture}[remember picture,overlay,
             nodo/.style={circle, draw, fill, brickred},
