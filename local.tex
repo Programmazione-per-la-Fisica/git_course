@@ -110,10 +110,13 @@ Changes to be committed:
 \end{frame}
 
 \begin{frame}[fragile]{git add \insertcontinuationtext}
-    \begin{itemize} 
+    \begin{itemize}[<+->] 
         \item You can add multiple files to the staging area with \\\code{git add <file1> <file2> <\dots>}
-        \item There is \alert{never} a good reason to use \code{git add *}, \code{git add .}, \code{git add -A} or \code{git add -u}
-    \end{itemize}      		       
+        \item There is \alert{never} a good reason to use \code{git add *}, \code{git add .} or \code{git add -A}.
+    \end{itemize}    	
+	\uncover<3->{Git is used to track changes in text files. 
+	
+	The functionalities of Git are reduced for binary files.}	       
 \end{frame}
 
 \begin{frame}[fragile]{Local Workflow}
@@ -139,7 +142,7 @@ Changes to be committed:
         \item Files in the staging area are tracked by Git, but their changes have not been saved on the repository.
         \item With \code{git commit} a collection of changes in the staging area is checked to the local repository and saved to the repo history.
         \item Each commit should be labelled with a message that clearly describes the changes made.
-        \item The commit message can be spficied between quotation marks:\\\code{   git commit -m "Commit message"}
+        \item The commit message can be specified between quotation marks:\\\code{   git commit -m "Commit message"}
     \end{itemize}      		       
 \end{frame}
 
@@ -190,14 +193,19 @@ commit 03678964f710e1ef1e9d6c0704e3f02f014109a0 (HEAD -> master)
 Author: Simone Rossi Tisbeni <simone.rossitisbeni@unibo.it>
 Date:   Fri Jan 29 14:39:12 2021 +0000
 
-    Initial commit}}\end{shellblock}    		       
+    Initial commit}}\end{shellblock}
+	\uncover<2->{
+		\begin{itemize}
+			\item Each commit has its own unique ID, by which is identified.
+		\end{itemize}
+	}    		       
 \end{frame}
 
 \begin{frame}[fragile]{git diff}
     \begin{itemize} 
         \item \code{git diff} is used to show the changes in the files.
-        \item When no argument is passed, it shows the difference between the current state of the repository and the working directory.
-        \item When \code{--staged} is passed as argument, it shows the difference between the current state of the repository and the staged changes.
-        \item When a commit number is passed as argument, it shows the difference between the current state of the repository and the selected commit.
+        \item When no argument is passed, it will show you any uncommitted changes since the last commit.
+        \item When \code{--staged} is passed as argument, it shows the difference between the last commit and the staged changes.
+        \item When a commit ID is passed as argument, it shows the difference between the last commit and the selected commit.
     \end{itemize}      		       
 \end{frame}
