@@ -1,22 +1,22 @@
 \begin{frame}[fragile]{Branching}
 \begin{itemize}[<+->]
-	\item   A git repositry keeps track of the history of changes.
-    \item   It can also keep track of multiple lines of development.
-    \item   These are known as \alert{branches}
+	  \item A Git repository keeps track of the history of changes.
+    \item It can also keep track of multiple lines of development.
+    \item These are known as \alert{branches}.
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]{git branch}
     \begin{itemize}[<+->]
         \item \code{git branch} is the command used to manipulate different development lines.
-        \item When launched with no arguments, lists the branches available in the repository
+        \item When launched with no arguments, it lists the branches available in the repository.
     \end{itemize}
     \begin{shellblock}<3->
 ~/workspace\$ git branch\inserthitenter
 {\color{white}*} master
 \end{shellblock}
     \begin{itemize}[<4->]
-        \item The current branch is highlighted in green and prefixed with \code{*} (asterisk)
+        \item The current branch is highlighted in green and prefixed with \code{*} (asterisk).
     \end{itemize}
 \end{frame}
 
@@ -77,9 +77,9 @@
 
 \begin{frame}[fragile]{git branch \insertcontinuationtext}
     \begin{itemize}
-        \item   Additional branches are used to host feature development, hotfix and beta releases.    
+        \item   Additional branches are used to host feature development, bug fixes and beta releases.    
         \item   They are meant to have a very brief life.
-        \item   You can create a new branches using \code{git branch <branch_name>}
+        \item   You can create a new branch using \code{git branch <branch_name>}
     \end{itemize}
     \begin{shellblock}<2->
 ~/workspace\$ git branch new_branch\inserthitenter
@@ -89,7 +89,7 @@
     \end{shellblock}
 
     \begin{itemize}[<3->]
-        \item \code{git log} shows the position of the branches on the commit history
+        \item \code{git log} shows the position of the branches on the commit history.
     \end{itemize}
 \end{frame}
 
@@ -118,7 +118,7 @@
 
 \begin{frame}[fragile]{git checkout }
     \begin{itemize}
-        \item The commit histories are independent on different branches
+        \item The commit histories are independent on different branches.
     \end{itemize}
 \end{frame}
 
@@ -169,7 +169,7 @@
 
 \begin{frame}[fragile]{git checkout }
     \begin{itemize}
-        \item The commit histories are independent on different branches
+        \item The commit histories are independent on different branches.
         \item Any new commit will be available only on the active branch.
         \item <2-> To switch branch, you use \code{git checkout <branch_name>}
     \end{itemize}
@@ -227,7 +227,7 @@
 
 \begin{frame}[fragile]{Merge}
 \begin{itemize}[<+->]
-    \item Merging is Git's way of putting a forked history back together.
+    \item Merging is Git way of putting a forked history back together.
     \item It is often used to merge a feature developed in a secondary branch to the main branch.
     \item Git can automatically merge commits unless there are changes that conflict in both commit sequences.
 \end{itemize}
@@ -257,7 +257,7 @@ Automatic merge failed; fix conflicts and then commit the result.
 \begin{frame}[fragile]{Merge conflicts}
     \begin{itemize}[<+->]
         \item If the merging branches both changed the same file, Git won't be able to figure out which version to use.
-        \item Running the \code{git status} shows you which files need to be resolved.
+        \item Running \code{git status} shows which files have conflicts that need to be resolved.
     \end{itemize}
     \begin{shellblock}<3->
 ~/workspace\$ git status \inserthitenter
@@ -276,8 +276,8 @@ no changes added to commit (use "git add" and/or "git commit -a")
 
 \begin{frame}[fragile]{Merge conflicts \insertcontinuationtext}
     \begin{itemize}[<+->]
-        \item Git will edit the content of the affected files with visual indicators.
-        \item These mark the conflicting section in the recieving branch and the upcoming changes. 
+        \item Git modifies the content of the affected files with visual indicators.
+        \item These mark the conflicting section in the receiving branch and the upcoming changes. 
     \end{itemize}
     \begin{codeblock}<3->
     This content is not affected by the conflict
@@ -292,7 +292,7 @@ no changes added to commit (use "git add" and/or "git commit -a")
 \begin{frame}[fragile]{Merge conflicts \insertcontinuationtext}
     \begin{itemize}[<+->]
         \item To fix the conflict, simply edit the files with the changes to maintain.
-        \item Git doesn't care for the content of the files, he simply requires you to remove the markers.
+        \item Git doesn't care for the content of the files, it simply requires you to remove the markers.
         \item Run \code{git add} on the files to tell Git they are resolved.
         \item Finally commit the changes with \code{git commit}.
     \end{itemize}
@@ -353,7 +353,7 @@ no changes added to commit (use "git add" and/or "git commit -a")
 
 \begin{frame}[fragile]{git commit}
     \begin{itemize}[<+->]
-        \item When running \code{git commit} qith no arguments, Git will open the default text editor.
+        \item When running \code{git commit} with no arguments, Git will open the default text editor.
         \item This will allow you to create a more complex commit message.
     \end{itemize}
     \begin{codeblock}<3->
@@ -387,8 +387,8 @@ See also: #456, #789
 
 
     \begin{itemize}[<+->]
-        \item The default on WSL is Nano, a more user friendly alternative.
-        \item This editor shows a list of common shortcut at the bottom of the Terminal.
+        \item The default on WSL is Nano, a more user-friendly alternative.
+        \item This editor shows a list of common shortcuts at the bottom of the Terminal.
         \item Directly edit your file, then hit \code{Ctrl+O} to save and \code{Ctrl+X} to quit. 
     \end{itemize}
 \end{frame}
@@ -398,11 +398,11 @@ See also: #456, #789
         \item If nano is not installed use \code{sudo apt install nano}
         \item You can change the default text editor for Git with \code{git config --global core.editor nano}
         \item You can also have nano be the default text editor for the OS.
-        \item Use \code{sudo nano \~/.bashrc} to edit the startup script.
+        \item Use \code{nano \~/.bashrc} to edit the startup script.
         \item Add the following lines
         \begin{codeblock}
     export VISUAL=nano
-    export EDITOR="\$VISUAL"
+    export EDITOR=nano
         \end{codeblock}
         \item Save and quit with \code{Ctrl+O} \code{Ctrl+X}
     \end{itemize}
@@ -415,7 +415,7 @@ See also: #456, #789
         \item Git will automatically ignore anything listed in a file called \code{.gitignore}
         \begin{codeblock}
 # Lines starting with # are comments
-# Blank lines can be used as separator for readbility
+# Blank lines can be used as separator for readability
 
 # The pattern below match a specific file which will be excluded
 exlcuded-file
@@ -423,14 +423,14 @@ exlcuded-file
 # The pattern below match a folder and all its content
 build/
 
-# The pattern below mathces any file with extension .out
+# The pattern below matches any file with extension .out
 *.out
         \end{codeblock}
     \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]{references}
-    Git tutorials and guide:
+    Git tutorials and guides:
     \begin{itemize}
         \item \url{https://www.atlassian.com/git/tutorials}
         \item \url{https://hsf-training.github.io/analysis-essentials/git/README.html}
@@ -439,7 +439,7 @@ build/
     \begin{itemize}
         \item \url{http://ndpsoftware.com/git-cheatsheet.html}
     \end{itemize}
-    How to write a Commit message
+    How to write a commit message
     \begin{itemize}
         \item \url{https://chris.beams.io/posts/git-commit/}
     \end{itemize}
