@@ -3,3 +3,4 @@ missfont.log
 *.aux
 git_course.*
 !git_course.tex
+.vscode/

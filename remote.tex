@@ -71,7 +71,7 @@ Make note of the path to the \code{.pub} file.
     \begin{itemize}
         \item On Github go to \alert{\href{https://github.com/settings/keys}{SSH and GPG keys}} settings page
         \item Create a New SSH key
-        \item Copy the content of the .pub file containing your public key and Add it.
+        \item Copy the content of the .pub file containing your public key and Add it in the form.
     \end{itemize}
 \end{frame}
 
@@ -88,10 +88,11 @@ Make note of the path to the \code{.pub} file.
     \begin{itemize}
         \item \code{git push} is the command used to update the remote repository.
         \item When there are one or several commit on the local repository ready to be shared, they have to be pushed to the remote repository.
+        \item \code{git push <remote> <branch>} allows to push the content of a local branch to a matching remote branch (i.e \code{git push origin main})
     \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Remote Workflow}
+\begin{frame}[fragile]{git push \insertcontinuationtext}
     \begin{tikzpicture}
         [area/.style={rectangle, draw, minimum height= 4em,minimum width= 7em,rounded corners=0.4em,align=center},
             hidden/.style={rectangle, minimum height= 4em,minimum width= 7em,rounded corners=0.4em,align=center}]
@@ -101,7 +102,33 @@ Make note of the path to the \code{.pub} file.
         \node[area] (local) [right=of staging] {Local\\Repository};
         \node[area] (remote) [above=of local] {Remote\\Repository};
         %        \draw[->] (working.south) -- ++(0,-1) --  node[midway, below]{git add} ++ (3.5,0) -| (staging.south) ;
-        \draw[->] (local.north) -| (remote.south) ;
+        \draw[->] (local.north) -- (remote.south) node[midway,right]{git push} ;
+
+        \begin{scope}[on background layer]
+            \node [draw=gray, dashed,fit=(working) (staging) (local), minimum height = 8em, label=above left:{Dev Environment}] {};
+        \end{scope}
+    \end{tikzpicture}
+\end{frame}
+
+\begin{frame}[fragile]{git fetch}
+    \begin{itemize}
+        \item \code{git push} fails if the local repository is not up to date with the remote one.
+        \item \code{git fetch} allows to pull the metadata from the remote repository to check for difference with the local.
+        \item \code{git diff <branch> origin/<branch>} will show the difference between a local branch and a remote one, after fetching the metadata.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{git fetch \insertcontinuationtext}
+    \begin{tikzpicture}
+        [area/.style={rectangle, draw, minimum height= 4em,minimum width= 7em,rounded corners=0.4em,align=center},
+            hidden/.style={rectangle, minimum height= 4em,minimum width= 7em,rounded corners=0.4em,align=center}]
+
+        \node[area] (working) {Working\\Directory};
+        \node[area] (staging) [right=of working] {Staging\\Area};
+        \node[area] (local) [right=of staging] {Local\\Repository};
+        \node[area] (remote) [above=of local] {Remote\\Repository};
+        %        \draw[->] (working.south) -- ++(0,-1) --  node[midway, below]{git add} ++ (3.5,0) -| (staging.south) ;
+        \draw[->] (remote.south) -- (local.north) node[midway,right]{git fetch} ;
 
         \begin{scope}[on background layer]
             \node [draw=gray, dashed,fit=(working) (staging) (local), minimum height = 8em, label=above left:{Dev Environment}] {};
@@ -110,13 +137,37 @@ Make note of the path to the \code{.pub} file.
 \end{frame}
 
 \begin{frame}[fragile]{git pull}
-    empty
+    \begin{itemize}
+        \item \code{git pull} will fetch the metadata and also download the current state of the remote into your workspace
+        \item It can cause Merge conflicts, that need to be fixed before pushing back to the remote
+        \item The complete remote workflow will consist of one or more \alert{commits}, \alert{fetching}, \alert{pulling} and \alert{merging conflicts}, and finally \alert{pushing} to the remote
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{git pull \insertcontinuationtext}
+    \begin{tikzpicture}
+        [area/.style={rectangle, draw, minimum height= 4em,minimum width= 7em,rounded corners=0.4em,align=center},
+            hidden/.style={rectangle, minimum height= 4em,minimum width= 7em,rounded corners=0.4em,align=center}]
+
+        \node[area] (working) {Working\\Directory};
+        \node[area] (staging) [right=of working] {Staging\\Area};
+        \node[area] (local) [right=of staging] {Local\\Repository};
+        \node[area] (remote) [above=of local] {Remote\\Repository};
+        \draw[->] (remote.south) -- (local.north);
+        \draw [->] ($ (local.north) - (2mm,0) $) -- ++(0,0.2) node[above left]{git pull} -| ($ (working.north) + (2mm,0) $);
+
+        \begin{scope}[on background layer]
+            \node [draw=gray, dashed,fit=(working) (staging) (local), minimum height = 8em, label=above left:{Dev Environment}] {};
+        \end{scope}
+    \end{tikzpicture}
 \end{frame}
 
 \begin{frame}[fragile]{git clone}
-    empty
+    \begin{itemize}
+        \item A remote repository can be shared between multiple users
+        \item To download locally the content of a remote repository you can use \code{git clone <remote_url>}
+        \item Cloning and pulling is usually permitted on public repositories, but pushing changes is restricted to users added as collaborators on Github
+        \item From your repository web page go to \alert{Settings > Manage access > Invite a collaborator} 
+    \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{git fetch}
-    empty
-\end{frame}
