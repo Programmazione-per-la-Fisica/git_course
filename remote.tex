@@ -1,19 +1,19 @@
 \begin{frame}[fragile]{Remote Workflow}
-	\begin{tikzpicture}
+    \begin{tikzpicture}
         [area/.style={rectangle, draw, minimum height= 4em,minimum width= 7em,rounded corners=0.4em,align=center},
-        hidden/.style={rectangle, minimum height= 4em,minimum width= 7em,rounded corners=0.4em,align=center}]
-				
-		\node[area] (working) {Working\\Directory};
-		\node[area] (staging) [right=of working] {Staging\\Area};
-		\node[area] (local) [right=of staging] {Local\\Repository};
-        \node[area] (remote) [above=of local] {Remote\\Repository};
-%        \draw[->] (working.south) -- ++(0,-1) --  node[midway, below]{git add} ++ (3.5,0) -| (staging.south) ;
-%        \draw[->] (staging.north) -- ++(0,+1) --  node[midway, above]{git commit -m} ++ (3.5,0) -| (local.north) ;
+            hidden/.style={rectangle, minimum height= 4em,minimum width= 7em,rounded corners=0.4em,align=center}]
 
-		\begin{scope}[on background layer]
-			\node [draw=gray, dashed,fit=(working) (staging) (local), minimum height = 8em, label=above left:{Dev Environment}] {};
-		\end{scope}            
-	\end{tikzpicture}
+        \node[area] (working) {Working\\Directory};
+        \node[area] (staging) [right=of working] {Staging\\Area};
+        \node[area] (local) [right=of staging] {Local\\Repository};
+        \node[area] (remote) [above=of local] {Remote\\Repository};
+        %        \draw[->] (working.south) -- ++(0,-1) --  node[midway, below]{git add} ++ (3.5,0) -| (staging.south) ;
+        %        \draw[->] (staging.north) -- ++(0,+1) --  node[midway, above]{git commit -m} ++ (3.5,0) -| (local.north) ;
+
+        \begin{scope}[on background layer]
+            \node [draw=gray, dashed,fit=(working) (staging) (local), minimum height = 8em, label=above left:{Dev Environment}] {};
+        \end{scope}
+    \end{tikzpicture}
 \end{frame}
 
 \begin{frame}[fragile]{Why remote?}
@@ -26,22 +26,87 @@
 \end{frame}
 
 \begin{frame}[fragile]{Github}
-    empty
+    \begin{itemize}
+        \item Github is a provider for hosting repositories online for free.
+        \item It allows secure access to private and public repositories
+        \item To host your repository on Github, first create an account at \url{https://github.com/join}
+        \item Then create an empty repository at \url{https://github.com/new}
+        \item Don't select any of the initialization options and hit \alert{Create repository}
+        \item In the next tab copy the \alert{SSH} link to you repository
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{SSH}
+\begin{itemize}
+    \item An SSH key is a crypted text that allows for a secure identification of a device.
+    \item It is comprised of a pair of files, a public key and a private key.
+    \item The private key should never be shared and should always reside on your machine.
+    \item The public key is shared with the client that would like to identify your device.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{SSH\insertcontinuationtext}
+    To create a SSH key pair run the following command on the bash.
+    \begin{shellblock}
+~/workspace\$ ssh-keygen -t rsa
+Generating public/private rsa key pair.
+Enter file in which to save the key (/home/demo/.ssh/id_rsa): 
+Enter passphrase (empty for no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved in /home/demo/.ssh/id_rsa.
+Your public key has been saved in /home/demo/.ssh/id_rsa.pub.
+The key fingerprint is:
+4a:dd:0a:c6:35:4e:3f:ed:27:38:8c:74:44:4d:93:67 demo@a
+The key's randomart image is:
++--[ RSA 2048]----+
+|          .oo.   |
+|         .  o.E  |
+|        + .  o   |
+...
+    \end{shellblock}
+Make note of the path to the \code{.pub} file.
+\end{frame}
+
+\begin{frame}[fragile]{Github \insertcontinuationtext}
+    \begin{itemize}
+        \item On Github go to \alert{\href{https://github.com/settings/keys}{SSH and GPG keys}} settings page
+        \item Create a New SSH key
+        \item Copy the content of the .pub file containing your public key and Add it.
+    \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]{git remote add origin}
     \begin{itemize}
         \item \code{git remote add origin <url_online_repository>} will link your local repository with a remote repo.
-        \item \code{git push -u origin master} will syncronize the repositories by \alert{pushing} the local changes, and set the default remote stream.
+        \item \code{git push -u origin main} will syncronize the repositories by \alert{pushing} the local changes, and set the default remote stream.
+        \item You will be promted to verify the fingerprint and accept the connection.
     \end{itemize}
-    \begin{block}{}
-        You will be promted to enter the username and password of your remote repository.
-        If using 2FA on github, instead of the password you should enter a \href{https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token}{Personal Access Token}.
-    \end{block}
+        If you prefer using HTTPS and 2FA on github, instead of SSH keys visit \href{https://docs.github.com/en/github/getting-started-with-github/about-remote-repositories#cloning-with-https-urls}{the official documentation}.
 \end{frame}
 
 \begin{frame}[fragile]{git push}
-    empty
+    \begin{itemize}
+        \item \code{git push} is the command used to update the remote repository.
+        \item When there are one or several commit on the local repository ready to be shared, they have to be pushed to the remote repository.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Remote Workflow}
+    \begin{tikzpicture}
+        [area/.style={rectangle, draw, minimum height= 4em,minimum width= 7em,rounded corners=0.4em,align=center},
+            hidden/.style={rectangle, minimum height= 4em,minimum width= 7em,rounded corners=0.4em,align=center}]
+
+        \node[area] (working) {Working\\Directory};
+        \node[area] (staging) [right=of working] {Staging\\Area};
+        \node[area] (local) [right=of staging] {Local\\Repository};
+        \node[area] (remote) [above=of local] {Remote\\Repository};
+        %        \draw[->] (working.south) -- ++(0,-1) --  node[midway, below]{git add} ++ (3.5,0) -| (staging.south) ;
+        \draw[->] (local.north) -| (remote.south) ;
+
+        \begin{scope}[on background layer]
+            \node [draw=gray, dashed,fit=(working) (staging) (local), minimum height = 8em, label=above left:{Dev Environment}] {};
+        \end{scope}
+    \end{tikzpicture}
 \end{frame}
 
 \begin{frame}[fragile]{git pull}
