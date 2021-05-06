@@ -5,9 +5,9 @@
 	\uncover <2->{Git can:}
 	\begin{itemize}
 		\item <2-> Keep record of all the (tracked) files in your directory.
-		\item <3-> Maintain an history of all the changes.
+		\item <3-> Maintain a history of all the changes.
 		\item <4-> Revert changes to fix mistakes.
-		\item <5-> Allow for concurrent work and helps preventing conflicts.
+		\item <5-> Allow for concurrent work and help preventing conflicts.
 	\end{itemize}
 		
 	\uncover <6->{Also known as \alert{Version Control}}
@@ -18,7 +18,7 @@
 	\begin{itemize}[<+->]
 		\item  \code{git init} initializes the working directory.
 		      		      
-		\item It tells git to start managing a \alert{repository} for your workspace.
+		\item It tells Git to start managing a \alert{repository} for your workspace.
 		      		       
 		\item The repository (or 'repo' for short) is a folder in a working directory in which Git tracks all changes made to files and builds a history of those changes.
 		      		       
@@ -116,7 +116,7 @@ Changes to be committed:
     \end{itemize}    	
 	\uncover<3->{Git is used to track changes in text files. 
 	
-	The functionalities of Git are reduced for binary files.}	       
+	The functionality of Git is reduced for binary files.}	       
 \end{frame}
 
 \begin{frame}[fragile]{Local Workflow}
@@ -139,8 +139,8 @@ Changes to be committed:
 
 \begin{frame}[fragile]{git commit -m}
     \begin{itemize} 
-        \item Files in the staging area are tracked by Git, but their changes have not been saved on the repository.
-        \item With \code{git commit} a collection of changes in the staging area is checked to the local repository and saved to the repo history.
+        \item Files in the staging area are tracked by Git, but their changes have not been saved into the repository.
+        \item With \code{git commit} a collection of changes in the staging area is checked into the local repository and inserted into the repo history.
         \item Each commit should be labelled with a message that clearly describes the changes made.
         \item The commit message can be specified between quotation marks:\\\code{   git commit -m "Commit message"}
     \end{itemize}      		       
@@ -148,7 +148,7 @@ Changes to be committed:
 
 \begin{frame}[fragile]{git commit -m \insertcontinuationtext}
     \begin{itemize} 
-        \item \code{git commit -m "Commit message"} asks Git to save changes in the local repository's history. 
+        \item \code{git commit -m "Commit message"} asks Git to save changes into the local repository history. 
     \end{itemize}
     \begin{shellblock}<1->{
 \uncover<1->{~/workspace\$ git commit -m "Initial commit"\inserthitenter }\uncover<2->{
@@ -159,7 +159,7 @@ Changes to be committed:
 On branch master
 nothing to commit, working tree clean}}\end{shellblock}
 \begin{block}<3->{}
-	If this is your first time working with git, you will be prompted to enter your email and name, with which to sign your commits.
+	If this is your first time working with Git, you will be prompted to enter your email and name, with which to sign your commits.
 	
 	Follow the instructions, then redo the commit.
 \end{block}    		       
@@ -175,7 +175,7 @@ nothing to commit, working tree clean}}\end{shellblock}
 		\node[area] (local) [right=of staging] {Local\\Repository};
         
         \draw[->] (working.south) -- ++(0,-1) --  node[midway, below]{git add} ++ (3.5,0) -| (staging.south) ;
-        \draw[->] (staging.north) -- ++(0,+1) --  node[midway, above]{git commit -m} ++ (3.5,0) -| (local.north) ;
+        \draw[->] (staging.north) -- ++(0,+1) --  node[midway, above]{git commit} ++ (3.5,0) -| (local.north) ;
 
 		\begin{scope}[on background layer]
 			\node [draw=gray, dashed,fit=(working) (staging) (local), minimum height = 8em, label=above left:{Dev Environment}] {};
@@ -185,7 +185,7 @@ nothing to commit, working tree clean}}\end{shellblock}
 
 \begin{frame}[fragile]{git log}
     \begin{itemize} 
-        \item \code{git log} show the local repository's history. 
+        \item \code{git log} shows the local repository history. 
     \end{itemize}
     \begin{shellblock}<1->{
 \uncover<1->{/workspace\$ git log\inserthitenter
@@ -196,7 +196,7 @@ Date:   Fri Jan 29 14:39:12 2021 +0000
     Initial commit}}\end{shellblock}
 	\uncover<2->{
 		\begin{itemize}
-			\item Each commit has its own unique ID, by which is identified.
+			\item Each commit has its own unique identifier.
 		\end{itemize}
 	}    		       
 \end{frame}
@@ -204,8 +204,8 @@ Date:   Fri Jan 29 14:39:12 2021 +0000
 \begin{frame}[fragile]{git diff}
     \begin{itemize} 
         \item \code{git diff} is used to show the changes in the files.
-        \item When no argument is passed, it will show you any uncommitted changes since the last commit.
+        \item When no argument is passed, it shows any uncommitted changes since the last commit.
         \item When \code{--staged} is passed as argument, it shows the difference between the last commit and the staged changes.
-        \item When a commit ID is passed as argument, it shows the difference between the last commit and the selected commit.
+        \item When a commit id is passed as argument, it shows the difference between the last commit and the selected commit.
     \end{itemize}      		       
 \end{frame}
