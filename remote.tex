@@ -26,7 +26,7 @@
 \end{frame}
 
 \begin{frame}[fragile]{Github}
-    \begin{itemize}
+    \begin{itemize}[<+->] 
         \item Github is a provider for hosting repositories online for free.
         \item It allows secure access to private and public repositories
         \item To host your repository on Github, first create an account at \url{https://github.com/join}
@@ -37,7 +37,7 @@
 \end{frame}
 
 \begin{frame}[fragile]{SSH}
-\begin{itemize}
+\begin{itemize}[<+->] 
     \item An SSH key is a crypted text that allows for a secure identification of a device.
     \item It is comprised of a pair of files, a public key and a private key.
     \item The private key should never be shared and should always reside on your machine.
@@ -68,7 +68,7 @@ Make note of the path to the \code{.pub} file.
 \end{frame}
 
 \begin{frame}[fragile]{Github \insertcontinuationtext}
-    \begin{itemize}
+    \begin{itemize}[<+->] 
         \item On Github go to \alert{\href{https://github.com/settings/keys}{SSH and GPG keys}} settings page
         \item Create a New SSH key
         \item Copy the content of the .pub file containing your public key and Add it in the form.
@@ -76,16 +76,16 @@ Make note of the path to the \code{.pub} file.
 \end{frame}
 
 \begin{frame}[fragile]{git remote add origin}
-    \begin{itemize}
+    \begin{itemize}[<+->] 
         \item \code{git remote add origin <url_online_repository>} will link your local repository with a remote repo.
         \item \code{git push -u origin main} will syncronize the repositories by \alert{pushing} the local changes, and set the default remote stream.
         \item You will be promted to verify the fingerprint and accept the connection.
+        \item If you prefer using HTTPS and 2FA on github, instead of SSH keys visit \href{https://docs.github.com/en/github/getting-started-with-github/about-remote-repositories#cloning-with-https-urls}{the official documentation}.
     \end{itemize}
-        If you prefer using HTTPS and 2FA on github, instead of SSH keys visit \href{https://docs.github.com/en/github/getting-started-with-github/about-remote-repositories#cloning-with-https-urls}{the official documentation}.
 \end{frame}
 
 \begin{frame}[fragile]{git push}
-    \begin{itemize}
+    \begin{itemize}[<+->] 
         \item \code{git push} is the command used to update the remote repository.
         \item When there are one or several commit on the local repository ready to be shared, they have to be pushed to the remote repository.
         \item \code{git push <remote> <branch>} allows to push the content of a local branch to a matching remote branch (i.e \code{git push origin main})
@@ -111,7 +111,7 @@ Make note of the path to the \code{.pub} file.
 \end{frame}
 
 \begin{frame}[fragile]{git fetch}
-    \begin{itemize}
+    \begin{itemize}[<+->] 
         \item \code{git push} fails if the local repository is not up to date with the remote one.
         \item \code{git fetch} allows to pull the metadata from the remote repository to check for difference with the local.
         \item \code{git diff <branch> origin/<branch>} will show the difference between a local branch and a remote one, after fetching the metadata.
@@ -137,7 +137,7 @@ Make note of the path to the \code{.pub} file.
 \end{frame}
 
 \begin{frame}[fragile]{git pull}
-    \begin{itemize}
+    \begin{itemize}[<+->] 
         \item \code{git pull} will fetch the metadata and also download the current state of the remote into your workspace
         \item It can cause Merge conflicts, that need to be fixed before pushing back to the remote
         \item The complete remote workflow will consist of one or more \alert{commits}, \alert{fetching}, \alert{pulling} and \alert{merging conflicts}, and finally \alert{pushing} to the remote
@@ -163,7 +163,7 @@ Make note of the path to the \code{.pub} file.
 \end{frame}
 
 \begin{frame}[fragile]{git clone}
-    \begin{itemize}
+    \begin{itemize}[<+->] 
         \item A remote repository can be shared between multiple users
         \item To download locally the content of a remote repository you can use \code{git clone <remote_url>}
         \item Cloning and pulling is usually permitted on public repositories, but pushing changes is restricted to users added as collaborators on Github
