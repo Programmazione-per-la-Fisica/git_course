@@ -33,20 +33,21 @@
         \item Then create an empty repository at \url{https://github.com/new}
         \item Don't select any of the initialization options and hit \alert{Create repository}
         \item In the next tab copy the \alert{SSH} link to you repository
+        \item Other provider are available (i.e. Bitbucket, Gitlab, Stash), and the following guide will work similarly for all
     \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]{SSH}
 \begin{itemize}[<+->] 
-    \item An SSH key is a crypted text that allows for a secure identification of a device.
-    \item It is comprised of a pair of files, a public key and a private key.
-    \item The private key should never be shared and should always reside on your machine.
-    \item The public key is shared with the client that would like to identify your device.
+    \item An SSH key is a cryptographic key used to secure a connection to a device
+    \item It is comprised of a pair of files, a public key and a private key
+    \item The private key should never be shared and should always reside on your machine
+    \item The public key is shared with the client that would like to identify your device
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]{SSH\insertcontinuationtext}
-    To create a SSH key pair run the following command on the bash.
+    To create a SSH key pair run the following command on the bash
     \begin{shellblock}
 ~/workspace\$ ssh-keygen -t rsa
 Generating public/private rsa key pair.
@@ -71,23 +72,23 @@ Make note of the path to the \code{.pub} file.
     \begin{itemize}[<+->] 
         \item On Github go to \alert{\href{https://github.com/settings/keys}{SSH and GPG keys}} settings page
         \item Create a New SSH key
-        \item Copy the content of the .pub file containing your public key and Add it in the form.
+        \item Copy the content of the .pub file containing your public key and Add it in the form
     \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]{git remote add origin}
     \begin{itemize}[<+->] 
-        \item \code{git remote add origin <url_online_repository>} will link your local repository with a remote repo.
-        \item \code{git push -u origin main} will syncronize the repositories by \alert{pushing} the local changes, and set the default remote stream.
-        \item You will be promted to verify the fingerprint and accept the connection.
-        \item If you prefer using HTTPS and 2FA on github, instead of SSH keys visit \href{https://docs.github.com/en/github/getting-started-with-github/about-remote-repositories#cloning-with-https-urls}{the official documentation}.
+        \item \code{git remote add origin <repository_ssh_url>} will link your local repository with a remote repo
+        \item \code{git push -u origin main} will syncronize the repositories by \alert{pushing} the local changes, and set the default remote stream
+        \item You will be promted to verify the fingerprint and accept the connection
+        \item If you prefer using HTTPS and 2FA on github, instead of SSH keys visit \href{https://docs.github.com/en/github/getting-started-with-github/about-remote-repositories#cloning-with-https-urls}{the official documentation}
     \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]{git push}
     \begin{itemize}[<+->] 
-        \item \code{git push} is the command used to update the remote repository.
-        \item When there are one or several commit on the local repository ready to be shared, they have to be pushed to the remote repository.
+        \item \code{git push} is the command used to update the remote repository
+        \item When there are one or several commit on the local repository ready to be shared, they have to be pushed to the remote repository
         \item \code{git push <remote> <branch>} allows to push the content of a local branch to a matching remote branch (i.e \code{git push origin main})
     \end{itemize}
 \end{frame}
@@ -112,9 +113,9 @@ Make note of the path to the \code{.pub} file.
 
 \begin{frame}[fragile]{git fetch}
     \begin{itemize}[<+->] 
-        \item \code{git push} fails if the local repository is not up to date with the remote one.
-        \item \code{git fetch} allows to pull the metadata from the remote repository to check for difference with the local.
-        \item \code{git diff <branch> origin/<branch>} will show the difference between a local branch and a remote one, after fetching the metadata.
+        \item \code{git push} fails if the local repository is behind the remote one
+        \item \code{git fetch} allows to pull commits, files and refs from the remote repository without merging with the local
+        \item \code{git diff <branch> origin/<branch>} will show the difference between a local branch and a remote one, after fetching the metadata
     \end{itemize}
 \end{frame}
 
@@ -138,7 +139,7 @@ Make note of the path to the \code{.pub} file.
 
 \begin{frame}[fragile]{git pull}
     \begin{itemize}[<+->] 
-        \item \code{git pull} will fetch the metadata and also download the current state of the remote into your workspace
+        \item \code{git pull} will fetch the files and also merge them with the current state of your workspace
         \item It can cause Merge conflicts, that need to be fixed before pushing back to the remote
         \item The complete remote workflow will consist of one or more \alert{commits}, \alert{fetching}, \alert{pulling} and \alert{merging conflicts}, and finally \alert{pushing} to the remote
     \end{itemize}
