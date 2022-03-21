@@ -10,5 +10,5 @@ viene prodotto automaticamente a ogni modifica.
 
 Il contenuto della repository è scaricabile sul proprio computer usando il comando git:
 ``` bash
-git clone https://baltig.infn.it/rossitisbeni/git_course
+git clone git@github.com:rsreds/git_course.git
 ```
