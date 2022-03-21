@@ -10,10 +10,9 @@ jobs:
         uses: xu-cheng/texlive-action/full@v1
         with:
           run: |
-            cd tex
             pdflatex -file-line-error -interaction=nonstopmode git_course.tex
             pdflatex -file-line-error -interaction=nonstopmode git_course.tex
-            mv git_course.pdf ..
+            mv git_course.pdf .
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
