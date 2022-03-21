@@ -1,6 +1,5 @@
 name: Presentation
-on: 
-  push:
+on: push
 jobs:
   presentation:
     runs-on: ubuntu-latest
