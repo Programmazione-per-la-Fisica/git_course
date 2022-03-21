@@ -1,5 +1,11 @@
 name: Presentation
-on: push
+on: 
+  push:
+    tags:
+      - pdf_**
+  pull_request:
+    tags:
+      - pdf_**
 jobs:
   presentation:
     runs-on: ubuntu-latest
