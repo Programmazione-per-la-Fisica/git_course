@@ -32,7 +32,7 @@
 \uncover<1->{~/workspace\$ git init\inserthitenter}\uncover<2->{
 Initialized empty Git repository in ~/workspace/.git/
 ~/workspace\$}\uncover<3->{ git status\inserthitenter}\uncover<4->{
-On branch master
+On branch main
 
 No commits yet
 
@@ -65,7 +65,7 @@ nothing to commit (create/copy files and use "git add" to track)
 \uncover<1->{~/workspace\$ touch main.cpp && ls\inserthitenter}\uncover<2->{
 main.cpp
 ~/workspace\$}\uncover<3->{ git status\inserthitenter}\uncover<4->{
-On branch master
+On branch main
 
 No commits yet
 
@@ -100,7 +100,7 @@ track)}}\end{shellblock}
     \begin{shellblock}<1->{
 \uncover<1->{~/workspace\$ git add main.cpp\inserthitenter}\uncover<2->{
 ~/workspace\$ git status\inserthitenter}\uncover<3->{
-On branch master
+On branch main
 
 No commits yet
 
@@ -152,11 +152,11 @@ Changes to be committed:
     \end{itemize}
     \begin{shellblock}<1->{
 \uncover<1->{~/workspace\$ git commit -m "Initial commit"\inserthitenter }\uncover<2->{
-[master (root-commit) 0367896] Initial commit
+[main (root-commit) 0367896] Initial commit
  1 file changed, 0 insertions(+), 0 deletions(-)
  create mode 100644 main.cpp
 /workspace\$ git status\inserthitenter}\uncover<3->{
-On branch master
+On branch main
 nothing to commit, working tree clean}}\end{shellblock}
 \begin{block}<3->{}
 	If this is your first time working with Git, you will be prompted to enter your email and name, with which to sign your commits.
@@ -189,7 +189,7 @@ nothing to commit, working tree clean}}\end{shellblock}
     \end{itemize}
     \begin{shellblock}<1->{
 \uncover<1->{/workspace\$ git log\inserthitenter
-commit 03678964f710e1ef1e9d6c0704e3f02f014109a0 (HEAD -> master)
+commit 03678964f710e1ef1e9d6c0704e3f02f014109a0 (HEAD -> main)
 Author: Simone Rossi Tisbeni <simone.rossitisbeni@unibo.it>
 Date:   Fri Jan 29 14:39:12 2021 +0000
 

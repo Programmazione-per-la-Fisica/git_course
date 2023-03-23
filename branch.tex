@@ -13,7 +13,7 @@
     \end{itemize}
     \begin{shellblock}<3->
 ~/workspace\$ git branch\inserthitenter
-{\color{white}*} master
+{\color{white}*} main
 \end{shellblock}
     \begin{itemize}[<4->]
         \item The current branch is highlighted in green and prefixed with \code{*} (asterisk).
@@ -55,28 +55,16 @@
             \draw[linea] (comm1) -- (comm2);
             \draw[linea] (comm2) -- (comm3);
             \draw[linea] (comm3) -- (head);
-            \node[nome, red] (master) [above=of head] {master};
-            \draw[->, shorten >=5pt] (master) -- (head);
+            \node[nome, red] (main) [above=of head] {main};
+            \draw[->, shorten >=5pt] (main) -- (head);
         \end{tikzpicture}
     }
 \end{frame}
 
-\begin{frame}[fragile]{Main branch}
-    \begin{itemize}[<+->]
-        \item The default branch created at the initialization of the repository is usually named \alert{master}.
-        \item The default branch should host the latest stable version of the repository.
-        \item The deafult is slowly moving towards a more inclusive denomination.
-        \item Github already started using (Oct 2020) the name \alert{main}.
-    \end{itemize}
-    \begin{shellblock}<4->
-~/workspace\$ git branch -m master main\inserthitenter
-~/workspace\$ git branch\inserthitenter
-{\color{white}*} main
-\end{shellblock}
-\end{frame}
-
 \begin{frame}[fragile]{git branch \insertcontinuationtext}
     \begin{itemize}
+        \item   The default branch created at the initialization of the repository is usually named \alert{main}.
+        \item   The default branch should host the latest stable version of the repository.
         \item   Additional branches are used to host feature development, bug fixes and beta releases.    
         \item   They are meant to have a very brief life.
         \item   You can create a new branch using \code{git branch <branch_name>}
