@@ -1,3 +1,7 @@
+\begin{frame}{Additional material}
+  
+\end{frame}
+
 \begin{frame}[fragile]{Main branch}
   \begin{itemize}[<+->]
       \item Historically, the default branch of the repository was named \alert{master}.
@@ -12,3 +16,82 @@
 {\color{white}*} main
 \end{shellblock}
 \end{frame}
+
+\begin{frame}[fragile]{git commit}
+  \begin{itemize}[<+->]
+      \item When running \code{git commit} with no arguments, Git will open the default text editor.
+      \item This will allow you to create a more complex commit message.
+  \end{itemize}
+  \begin{codeblock}<3->
+Summarize changes in around 50 characters or less
+
+More detailed explanatory text, if necessary. Wrap it to about 72
+characters or so. The blank line separating the summary from the body
+is critical. Further paragraphs come after blank lines.
+
+Explain the problem that this commit is solving. Focus on why you
+are making this change as opposed to how.
+
+If you use an issue tracker, put references to them at the bottom,
+like this:
+
+Resolves: #123
+See also: #456, #789
+  \end{codeblock}
+\end{frame}
+
+\begin{frame}[fragile]{Default text editor}
+  Git will load the commit message on the default text editor.
+
+
+  \begin{itemize}[<+->]
+      \item Vim is the default editor for many Linux distribution and for Git bash on Windows.
+      \item This editor does not show a UI or command shortcut.
+      \item You can enter \code{INSERT} mode by hitting \code{I} and then editing the text.
+      \item Press \code{ESC} to exit \code{INSERT} mode, followed by \code{:wq} to save changes and quit.
+  \end{itemize}
+
+
+  \begin{itemize}[<+->]
+      \item The default on WSL is Nano, a more user-friendly alternative.
+      \item This editor shows a list of common shortcuts at the bottom of the Terminal.
+      \item Directly edit your file, then hit \code{Ctrl+O} to save and \code{Ctrl+X} to quit. 
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Default text editor \insertcontinuationtext}
+  \begin{itemize}[<+->]
+      \item If nano is not installed use \code{sudo apt install nano}
+      \item You can change the default text editor for Git with \code{git config --global core.editor nano}
+      \item You can also have nano be the default text editor for the OS.
+      \item Use \code{nano \~/.bashrc} to edit the startup script.
+      \item Add the following lines
+      \begin{codeblock}
+  export VISUAL=nano
+  export EDITOR=nano
+      \end{codeblock}
+      \item Save and quit with \code{Ctrl+O} \code{Ctrl+X}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{.gitignore}
+  \begin{itemize}[<+->]
+      \item Git should be used only for non-generated files.
+      \item The output of a compilation (for example) should not be tracked by the repository.
+      \item Git will automatically ignore anything listed in a file called \code{.gitignore}
+      \begin{codeblock}
+# Lines starting with # are comments
+# Blank lines can be used as separator for readability
+
+# The pattern below match a specific file which will be excluded
+exlcuded-file
+
+# The pattern below match a folder and all its content
+build/
+
+# The pattern below matches any file with extension .out
+*.out
+      \end{codeblock}
+  \end{itemize}
+\end{frame}
+
