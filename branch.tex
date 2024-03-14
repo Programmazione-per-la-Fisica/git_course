@@ -104,13 +104,13 @@
     }
 \end{frame}
 
-\begin{frame}[fragile]{git checkout }
+\begin{frame}[fragile]{git switch }
     \begin{itemize}
         \item The commit histories are independent on different branches.
     \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{git checkout}
+\begin{frame}[fragile]{git switch}
     \uncover<1>{
         \begin{tikzpicture}[remember picture,overlay,
             nodo/.style={circle, draw, fill, brickred},
@@ -155,15 +155,17 @@
     }
 \end{frame}
 
-\begin{frame}[fragile]{git checkout }
+\begin{frame}[fragile]{git switch}
     \begin{itemize}
         \item The commit histories are independent on different branches.
         \item Any new commit will be available only on the active branch.
-        \item <2-> To switch branch, you use \code{git checkout <branch_name>}
+        \item <2-> To switch branch, you use \code{git switch <branch_name>}
+        \item <3-> \code{switch} is not available for git version <2.23.
+                   Use \code{git checkout <branch_name>} instead
     \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{git checkout}
+\begin{frame}[fragile]{git switch}
     \uncover<1>{
         \begin{tikzpicture}[remember picture,overlay,
             nodo/.style={circle, draw, fill, brickred},
@@ -223,11 +225,11 @@
 
 \begin{frame}[fragile]{Merge \insertcontinuationtext}
     \begin{itemize}[<+->]
-        \item To merge two branches togheter, first checkout to the destination branch
+        \item To merge two branches togheter, first switch to the destination branch
         \item Then use \code{git merge <branch_name>}
     \end{itemize}
     \uncover<3->{\begin{shellblock}
-~/workspace\$ git checkout main \inserthitenter
+~/workspace\$ git switch main \inserthitenter
 
 ~/workspace\$ git merge new_branch \uncover<4->{\inserthitenter}
 \uncover<4>{
