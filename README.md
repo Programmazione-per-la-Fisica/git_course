@@ -1,8 +1,8 @@
-# Guida a Git per il corso di Programmazione per la Fisica 2022/2023
+# Guida a Git per il corso di Programmazione per la Fisica 2024/2025
 
 Questa repository contiene materiale a supporto dell'insegnamento di
 "Programmazione per la Fisica", corso di laurea in Fisica, Università di
-Bologna, Anno Accademico 2022/2023.
+Bologna, Anno Accademico 2024/2025.
 
 La repository contiene il sorgente della presentazione mostrata a lezione,
 scritta in LaTeX. Il [`pdf`](https://github.com/rsreds/git_course/releases)
