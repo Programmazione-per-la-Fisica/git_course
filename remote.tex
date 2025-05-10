@@ -49,20 +49,19 @@
 \begin{frame}[fragile]{SSH\insertcontinuationtext}
     To create a SSH key pair run the following command on the bash
     \begin{shellblock}
-~/workspace\$ ssh-keygen -t rsa
+~/workspace\$ ssh-keygen -t ed25519 -C "your_email@example.com"
 Generating public/private rsa key pair.
-Enter file in which to save the key (/home/demo/.ssh/id_rsa): 
+Enter file in which to save the key (/home/demo/.ssh/id_ed25519): 
 Enter passphrase (empty for no passphrase): 
 Enter same passphrase again: 
-Your identification has been saved in /home/demo/.ssh/id_rsa.
-Your public key has been saved in /home/demo/.ssh/id_rsa.pub.
+Your identification has been saved in /home/demo/.ssh/id_ed25519.
+Your public key has been saved in /home/demo/.ssh/id_ed25519.pub.
 The key fingerprint is:
 4a:dd:0a:c6:35:4e:3f:ed:27:38:8c:74:44:4d:93:67 demo@a
 The key's randomart image is:
-+--[ RSA 2048]----+
-|          .oo.   |
-|         .  o.E  |
-|        + .  o   |
++--[ED25519 256]--+
+|        .        |
+|       . =       |
 ...
     \end{shellblock}
 Make note of the path to the \code{.pub} file.
