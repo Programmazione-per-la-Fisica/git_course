@@ -335,8 +335,8 @@ Automatic merge failed; fix conflicts and then commit the result.
             \draw[linea] (newcom) -- (merge);
             \draw[linea, darkspringgreen] (commb.east) to[out=0,in=180] (merge.west);
             \draw[->, shorten >=5pt] (main) -- (merge);
-            \node[nome, darkspringgreen] (branch) [below=of merge] {new_branch};
-            \draw[->, shorten >=5pt] (branch) -- (merge);
+            \node[nome, darkspringgreen] (branch) [below=of commb] {new_branch};
+            \draw[->, shorten >=5pt] (branch) -- (commb);
         \end{tikzpicture}
     }
   \end{frame}
